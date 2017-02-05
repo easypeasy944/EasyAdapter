@@ -7,13 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A42816D11DD8D6E200D02F1B /* UpdateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D01DD8D6E200D02F1B /* UpdateOperation.swift */; };
+		A42816D41DD8D72300D02F1B /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D31DD8D72300D02F1B /* Book.swift */; };
+		A42816D81DD8D90E00D02F1B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D71DD8D90E00D02F1B /* Helpers.swift */; };
 		A45E3BDB1DCF8AF2008AA0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3BDA1DCF8AF2008AA0DA /* AppDelegate.swift */; };
 		A45E3BDD1DCF8AF2008AA0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3BDC1DCF8AF2008AA0DA /* ViewController.swift */; };
 		A45E3BE01DCF8AF2008AA0DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A45E3BDE1DCF8AF2008AA0DA /* Main.storyboard */; };
 		A45E3BE21DCF8AF2008AA0DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A45E3BE11DCF8AF2008AA0DA /* Assets.xcassets */; };
 		A45E3BE51DCF8AF2008AA0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A45E3BE31DCF8AF2008AA0DA /* LaunchScreen.storyboard */; };
 		A45E3BF01DCF8AF2008AA0DA /* TableAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3BEF1DCF8AF2008AA0DA /* TableAdapterTests.swift */; };
-		A45E3BFB1DCF8AF2008AA0DA /* TableAdapterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3BFA1DCF8AF2008AA0DA /* TableAdapterUITests.swift */; };
+		A45E3C091DCF8E71008AA0DA /* TableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3C081DCF8E71008AA0DA /* TableAdapter.swift */; };
+		A46300861DF49064003EF8DA /* InsertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300851DF49064003EF8DA /* InsertOperation.swift */; };
+		A46300881DF49491003EF8DA /* DeleteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300871DF49491003EF8DA /* DeleteOperation.swift */; };
+		A463008A1DF4AFF6003EF8DA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300891DF4AFF6003EF8DA /* TableViewController.swift */; };
+		A463008B1DF4B060003EF8DA /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D31DD8D72300D02F1B /* Book.swift */; };
+		A463008C1DF4B0C5003EF8DA /* TableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3C081DCF8E71008AA0DA /* TableAdapter.swift */; };
+		A463008D1DF4B0CB003EF8DA /* UpdateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D01DD8D6E200D02F1B /* UpdateOperation.swift */; };
+		A463008E1DF4B0CD003EF8DA /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D71DD8D90E00D02F1B /* Helpers.swift */; };
+		A463008F1DF4B0CF003EF8DA /* InsertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300851DF49064003EF8DA /* InsertOperation.swift */; };
+		A46300901DF4B0D2003EF8DA /* DeleteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300871DF49491003EF8DA /* DeleteOperation.swift */; };
+		A46300921DF4BF44003EF8DA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300911DF4BF44003EF8DA /* TestHelpers.swift */; };
+		A4CA2DE01E4667A100007FA6 /* ObjcHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA2DDF1E4667A100007FA6 /* ObjcHelpers.m */; };
+		A4F878191DCFA8B400D9D6F4 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F878181DCFA8B400D9D6F4 /* BookCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,16 +39,12 @@
 			remoteGlobalIDString = A45E3BD61DCF8AF2008AA0DA;
 			remoteInfo = TableAdapter;
 		};
-		A45E3BF71DCF8AF2008AA0DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A45E3BCF1DCF8AF2008AA0DA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A45E3BD61DCF8AF2008AA0DA;
-			remoteInfo = TableAdapter;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A42816D01DD8D6E200D02F1B /* UpdateOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateOperation.swift; sourceTree = "<group>"; };
+		A42816D31DD8D72300D02F1B /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		A42816D71DD8D90E00D02F1B /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A45E3BD71DCF8AF2008AA0DA /* TableAdapter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableAdapter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45E3BDA1DCF8AF2008AA0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A45E3BDC1DCF8AF2008AA0DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,9 +55,15 @@
 		A45E3BEB1DCF8AF2008AA0DA /* TableAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45E3BEF1DCF8AF2008AA0DA /* TableAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAdapterTests.swift; sourceTree = "<group>"; };
 		A45E3BF11DCF8AF2008AA0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A45E3BF61DCF8AF2008AA0DA /* TableAdapterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableAdapterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A45E3BFA1DCF8AF2008AA0DA /* TableAdapterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAdapterUITests.swift; sourceTree = "<group>"; };
-		A45E3BFC1DCF8AF2008AA0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A45E3C081DCF8E71008AA0DA /* TableAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableAdapter.swift; sourceTree = "<group>"; };
+		A46300851DF49064003EF8DA /* InsertOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertOperation.swift; sourceTree = "<group>"; };
+		A46300871DF49491003EF8DA /* DeleteOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteOperation.swift; sourceTree = "<group>"; };
+		A46300891DF4AFF6003EF8DA /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		A46300911DF4BF44003EF8DA /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		A4CA2DDD1E4667A100007FA6 /* TableAdapter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TableAdapter-Bridging-Header.h"; sourceTree = "<group>"; };
+		A4CA2DDE1E4667A100007FA6 /* ObjcHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcHelpers.h; sourceTree = "<group>"; };
+		A4CA2DDF1E4667A100007FA6 /* ObjcHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcHelpers.m; sourceTree = "<group>"; };
+		A4F878181DCFA8B400D9D6F4 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,22 +81,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A45E3BF31DCF8AF2008AA0DA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A42816D21DD8D6E700D02F1B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A45E3C081DCF8E71008AA0DA /* TableAdapter.swift */,
+				A42816D01DD8D6E200D02F1B /* UpdateOperation.swift */,
+				A42816D71DD8D90E00D02F1B /* Helpers.swift */,
+				A46300851DF49064003EF8DA /* InsertOperation.swift */,
+				A46300871DF49491003EF8DA /* DeleteOperation.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 		A45E3BCE1DCF8AF2008AA0DA = {
 			isa = PBXGroup;
 			children = (
 				A45E3BD91DCF8AF2008AA0DA /* TableAdapter */,
 				A45E3BEE1DCF8AF2008AA0DA /* TableAdapterTests */,
-				A45E3BF91DCF8AF2008AA0DA /* TableAdapterUITests */,
 				A45E3BD81DCF8AF2008AA0DA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,7 +110,6 @@
 			children = (
 				A45E3BD71DCF8AF2008AA0DA /* TableAdapter.app */,
 				A45E3BEB1DCF8AF2008AA0DA /* TableAdapterTests.xctest */,
-				A45E3BF61DCF8AF2008AA0DA /* TableAdapterUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,12 +117,18 @@
 		A45E3BD91DCF8AF2008AA0DA /* TableAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				A42816D21DD8D6E700D02F1B /* Core */,
 				A45E3BDA1DCF8AF2008AA0DA /* AppDelegate.swift */,
 				A45E3BDC1DCF8AF2008AA0DA /* ViewController.swift */,
 				A45E3BDE1DCF8AF2008AA0DA /* Main.storyboard */,
 				A45E3BE11DCF8AF2008AA0DA /* Assets.xcassets */,
 				A45E3BE31DCF8AF2008AA0DA /* LaunchScreen.storyboard */,
 				A45E3BE61DCF8AF2008AA0DA /* Info.plist */,
+				A4F878181DCFA8B400D9D6F4 /* BookCell.swift */,
+				A42816D31DD8D72300D02F1B /* Book.swift */,
+				A4CA2DDE1E4667A100007FA6 /* ObjcHelpers.h */,
+				A4CA2DDF1E4667A100007FA6 /* ObjcHelpers.m */,
+				A4CA2DDD1E4667A100007FA6 /* TableAdapter-Bridging-Header.h */,
 			);
 			path = TableAdapter;
 			sourceTree = "<group>";
@@ -112,17 +138,10 @@
 			children = (
 				A45E3BEF1DCF8AF2008AA0DA /* TableAdapterTests.swift */,
 				A45E3BF11DCF8AF2008AA0DA /* Info.plist */,
+				A46300891DF4AFF6003EF8DA /* TableViewController.swift */,
+				A46300911DF4BF44003EF8DA /* TestHelpers.swift */,
 			);
 			path = TableAdapterTests;
-			sourceTree = "<group>";
-		};
-		A45E3BF91DCF8AF2008AA0DA /* TableAdapterUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A45E3BFA1DCF8AF2008AA0DA /* TableAdapterUITests.swift */,
-				A45E3BFC1DCF8AF2008AA0DA /* Info.plist */,
-			);
-			path = TableAdapterUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,24 +182,6 @@
 			productReference = A45E3BEB1DCF8AF2008AA0DA /* TableAdapterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A45E3BF51DCF8AF2008AA0DA /* TableAdapterUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A45E3C051DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "TableAdapterUITests" */;
-			buildPhases = (
-				A45E3BF21DCF8AF2008AA0DA /* Sources */,
-				A45E3BF31DCF8AF2008AA0DA /* Frameworks */,
-				A45E3BF41DCF8AF2008AA0DA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A45E3BF81DCF8AF2008AA0DA /* PBXTargetDependency */,
-			);
-			name = TableAdapterUITests;
-			productName = TableAdapterUITests;
-			productReference = A45E3BF61DCF8AF2008AA0DA /* TableAdapterUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -194,15 +195,10 @@
 					A45E3BD61DCF8AF2008AA0DA = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3EZN9G7JS8;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					A45E3BEA1DCF8AF2008AA0DA = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 3EZN9G7JS8;
-						ProvisioningStyle = Automatic;
-						TestTargetID = A45E3BD61DCF8AF2008AA0DA;
-					};
-					A45E3BF51DCF8AF2008AA0DA = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3EZN9G7JS8;
 						ProvisioningStyle = Automatic;
@@ -225,7 +221,6 @@
 			targets = (
 				A45E3BD61DCF8AF2008AA0DA /* TableAdapter */,
 				A45E3BEA1DCF8AF2008AA0DA /* TableAdapterTests */,
-				A45E3BF51DCF8AF2008AA0DA /* TableAdapterUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -248,13 +243,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A45E3BF41DCF8AF2008AA0DA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -262,8 +250,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A46300881DF49491003EF8DA /* DeleteOperation.swift in Sources */,
+				A4CA2DE01E4667A100007FA6 /* ObjcHelpers.m in Sources */,
+				A4F878191DCFA8B400D9D6F4 /* BookCell.swift in Sources */,
 				A45E3BDD1DCF8AF2008AA0DA /* ViewController.swift in Sources */,
+				A42816D41DD8D72300D02F1B /* Book.swift in Sources */,
+				A42816D81DD8D90E00D02F1B /* Helpers.swift in Sources */,
+				A42816D11DD8D6E200D02F1B /* UpdateOperation.swift in Sources */,
 				A45E3BDB1DCF8AF2008AA0DA /* AppDelegate.swift in Sources */,
+				A45E3C091DCF8E71008AA0DA /* TableAdapter.swift in Sources */,
+				A46300861DF49064003EF8DA /* InsertOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,14 +268,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A45E3BF01DCF8AF2008AA0DA /* TableAdapterTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A45E3BF21DCF8AF2008AA0DA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A45E3BFB1DCF8AF2008AA0DA /* TableAdapterUITests.swift in Sources */,
+				A463008E1DF4B0CD003EF8DA /* Helpers.swift in Sources */,
+				A463008A1DF4AFF6003EF8DA /* TableViewController.swift in Sources */,
+				A463008D1DF4B0CB003EF8DA /* UpdateOperation.swift in Sources */,
+				A46300901DF4B0D2003EF8DA /* DeleteOperation.swift in Sources */,
+				A463008C1DF4B0C5003EF8DA /* TableAdapter.swift in Sources */,
+				A463008F1DF4B0CF003EF8DA /* InsertOperation.swift in Sources */,
+				A463008B1DF4B060003EF8DA /* Book.swift in Sources */,
+				A46300921DF4BF44003EF8DA /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,11 +286,6 @@
 			isa = PBXTargetDependency;
 			target = A45E3BD61DCF8AF2008AA0DA /* TableAdapter */;
 			targetProxy = A45E3BEC1DCF8AF2008AA0DA /* PBXContainerItemProxy */;
-		};
-		A45E3BF81DCF8AF2008AA0DA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A45E3BD61DCF8AF2008AA0DA /* TableAdapter */;
-			targetProxy = A45E3BF71DCF8AF2008AA0DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -358,7 +349,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -402,7 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -415,11 +406,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: aynur.galiev@flatstack.com (ZZP534RH9K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 3EZN9G7JS8;
 				INFOPLIST_FILE = TableAdapter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.TableAdapter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TableAdapter/TableAdapter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -428,11 +426,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: aynur.galiev@flatstack.com (ZZP534RH9K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3EZN9G7JS8;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = TableAdapter/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.TableAdapter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TableAdapter/TableAdapter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -467,34 +472,6 @@
 			};
 			name = Release;
 		};
-		A45E3C061DCF8AF2008AA0DA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 3EZN9G7JS8;
-				INFOPLIST_FILE = TableAdapterUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.TableAdapterUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = TableAdapter;
-			};
-			name = Debug;
-		};
-		A45E3C071DCF8AF2008AA0DA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 3EZN9G7JS8;
-				INFOPLIST_FILE = TableAdapterUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.TableAdapterUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = TableAdapter;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -514,6 +491,7 @@
 				A45E3C011DCF8AF2008AA0DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A45E3C021DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "TableAdapterTests" */ = {
 			isa = XCConfigurationList;
@@ -522,14 +500,7 @@
 				A45E3C041DCF8AF2008AA0DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		A45E3C051DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "TableAdapterUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A45E3C061DCF8AF2008AA0DA /* Debug */,
-				A45E3C071DCF8AF2008AA0DA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
