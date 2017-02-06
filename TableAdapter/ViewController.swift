@@ -12,37 +12,18 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     fileprivate lazy var tableAdapter: TableAdapter<Book> = {
-        return TableAdapter<Book>(tableView: self.tableView, referenced: MemoryOption.weakMemory)
+        return TableAdapter<Book>(tableView: self.tableView, referenced: MemoryOption.weakMemory, delegate: self)
     }()
     var books: [Book] = []
-    
-    var prevBooks: [Book] = {
-        var books: [Book] = []
-        books.append(Book.init(id: "1", name: "1 Book"))
-        books.append(Book.init(id: "2", name: "2 Book"))
-        books.append(Book.init(id: "3", name: "3 Book"))
-        books.append(Book.init(id: "4", name: "4 Book"))
-        books.append(Book.init(id: "5", name: "5 Book"))
-        return books
-    }()
-    
-    var newBooks: [Book] = {
-        var books: [Book] = []
-        books.append(Book.init(id: "6", name: "1 Book"))
-        books.append(Book.init(id: "4", name: "New 4 Book"))
-        books.append(Book.init(id: "7", name: "3 Book"))
-        books.append(Book.init(id: "8", name: "2 Book"))
-        books.append(Book.init(id: "10", name: "5 Book"))
-        return books
-    }()
+    var minimumLength: UInt32 = 10
     
     var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.generateBooks()
-        //self.tableView.rowHeight = UITableViewAutomaticDimension
-        //self.tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 44
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
     }
     
@@ -51,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func reload(_ sender: AnyObject) {
-        NSLog("Reload")
+        //NSLog("Reload")
         var books: [Book] = []
         for i in 0..<self.books.count {
             if arc4random()%2 == 0 { // Don't use condition for waves effect
@@ -63,7 +44,7 @@ class ViewController: UIViewController {
     
     func update() {
 
-        let choose = arc4random()%3
+        let choose = arc4random() % 4
         
         switch choose {
         case 0:
@@ -96,16 +77,31 @@ class ViewController: UIViewController {
             DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).sync {
                 self.tableAdapter.delete(array: books)
             }
+        case 3:
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).sync {
+                let sliceIndex: Int = Int(arc4random() % self.minimumLength)
+                self.tableAdapter.set(sortBlock: { (first: Book, second: Book) -> Bool in
+                    
+                    let startIndexFirst = first.name.index(first.name.startIndex, offsetBy: sliceIndex)
+                    let firstPart = first.name.substring(from: startIndexFirst)
+                    
+                    let startIndexSecond = second.name.index(second.name.startIndex, offsetBy: sliceIndex)
+                    let secondPart = second.name.substring(from: startIndexSecond)
+                    
+                    return firstPart < secondPart
+                })
+            }
+            
         default:
             return
         }
     }
     
     func generateBooks() {
-        let count = 100
+        let count = 20
         for _ in 0..<count {
             
-            let name = randomString(length: Int(arc4random_uniform(150) + 10))
+            let name = randomString(length: Int(arc4random_uniform(150)+self.minimumLength))
             self.books.append(Book(name: name))
         }
     }
@@ -134,14 +130,25 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Log("Count - \(self.tableAdapter.tableData.count)")
+        //Log("Count - \(self.tableAdapter.tableData.count)")
         return self.tableAdapter.tableData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! BookCell
-        Log("Cell - \(indexPath)")
+        //Log("Cell - \(indexPath)")
         return cell
+    }
+}
+
+extension ViewController: IReloadable {
+    
+    func tableView<T>(_ tableView: UITableView, configureCell cell: UITableViewCell, indexPath: NSIndexPath, data: T) {
+        if let cell = cell as? BookCell {
+            let book = self.tableAdapter[indexPath as NSIndexPath]
+            cell.contentView.fadeTransition(duration: 0.2)
+            cell.bookLabel.text = book?.name
+        }
     }
 }
 
@@ -152,35 +159,35 @@ extension ViewController: UITableViewDelegate {
         //Log("\(indexPath)")
         
         if let lCell = cell as? BookCell {
-            let book = self.tableAdapter[indexPath]
+            let book = self.tableAdapter[indexPath as NSIndexPath]
             lCell.bookLabel.text = book?.name
         }
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    
-        let book = self.tableAdapter[indexPath]
-        
-        let rect = NSString(string: book?.name ?? "").boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude),
-                                                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                                                                    attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)],
-                                                                    context: nil)
-        
-        return ceil(rect.size.height) + 16
-    }
-
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        let book = self.tableAdapter[indexPath]
-        
-        let rect = NSString(string: book?.name ?? "").boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude),
-                                                                   options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                                                                   attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)],
-                                                                   context: nil)
-        
-        Log("Height - \(indexPath) - \(ceil(rect.size.height) + 16)")
-        
-        return ceil(rect.size.height) + 16
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//    
+//        let book = self.tableAdapter[indexPath as NSIndexPath]
+//        
+//        let rect = NSString(string: book?.name ?? "").boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude),
+//                                                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
+//                                                                    attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)],
+//                                                                    context: nil)
+//        
+//        return ceil(rect.size.height) + 16
+//    }
+//
+//    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        let book = self.tableAdapter[indexPath as NSIndexPath]
+//        
+//        let rect = NSString(string: book?.name ?? "").boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude),
+//                                                                   options: NSStringDrawingOptions.usesLineFragmentOrigin,
+//                                                                   attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)],
+//                                                                   context: nil)
+//        
+//        //Log("Height - \(indexPath) - \(ceil(rect.size.height) + 16)")
+//        
+//        return ceil(rect.size.height) + 16
+//    }
 }

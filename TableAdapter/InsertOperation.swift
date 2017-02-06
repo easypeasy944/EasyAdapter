@@ -33,15 +33,19 @@ final class InsertOperation<T: AnyObject>: Operation where T: Data  {
         
         //Log("Main insert - \(self.name)")
         
+        if self.isCancelled { return }
+        
         let newData: NSMapTable<NSIndexPath, T> = NSMapTable<NSIndexPath, T>()
         
-        var insertingIndexPaths: [IndexPath] = []
-        var movingIndexPaths: [IndexPath: IndexPath] = [:]
+        var insertingIndexPaths: [NSIndexPath] = []
+        var movingIndexPaths: [NSIndexPath: NSIndexPath] = [:]
         
-        var allIndexPaths: [IndexPath] = self.data.keyEnumerator().allObjects as! [IndexPath]
+        var allIndexPaths: [NSIndexPath] = self.data.keyEnumerator().allObjects as! [NSIndexPath]
         let allValues: [T] = self.data.objectEnumerator()!.allObjects as! [T]
         
-        allIndexPaths.sort()
+        allIndexPaths.sort { (first, second) -> Bool in
+            return first.row < second.row
+        }
         
         var prevValues: [T] = []
         
@@ -60,14 +64,14 @@ final class InsertOperation<T: AnyObject>: Operation where T: Data  {
         
         for i in 0..<prevValues.count {
             
-            let newIndexPath: IndexPath = IndexPath(row: i, section: 0)
+            let newIndexPath: NSIndexPath = NSIndexPath(row: i, section: 0)
             newData.setObject(prevValues[i], forKey: newIndexPath as NSIndexPath?)
             
             if let _ = allValues.index(of: prevValues[i]) {
             
-                var indexPath: IndexPath? = nil
+                var indexPath: NSIndexPath? = nil
                 
-                for key in self.data.keyEnumerator().allObjects as! [IndexPath] {
+                for key in self.data.keyEnumerator().allObjects as! [NSIndexPath] {
                     guard let object = self.data.object(forKey: key as NSIndexPath?) else { continue }
                     if object == prevValues[i] {
                         indexPath = key
@@ -81,9 +85,10 @@ final class InsertOperation<T: AnyObject>: Operation where T: Data  {
             }
         }
         
-        //Log("Prev data in main \(self.name) - \(self.data.count)")
-        //Log("Prev insert in main \(self.name) - \(insertingIndexPaths.count)")
-        //Log("Prev newData in main \(self.name) - \(newData.count)")
+//        Log("Insert")
+//        Log("Prev data in main \(self.name) - \(self.data.count)")
+//        Log("Prev insert in main \(self.name) - \(insertingIndexPaths.count)")
+//        Log("Prev newData in main \(self.name) - \(newData.count)")
         
         if self.data.count + insertingIndexPaths.count != newData.count {
             

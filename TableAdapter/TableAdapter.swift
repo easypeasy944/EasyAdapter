@@ -18,11 +18,16 @@ func Log(_ message: String) {
     NSLog(message)
 }
 
+protocol IReloadable: class {
+    func tableView<T>(_ tableView: UITableView, configureCell cell: UITableViewCell, indexPath: NSIndexPath, data: T)
+}
+
 final class TableAdapter<T: AnyObject>: NSObject where T: Data {
 
     private weak var tableView: UITableView?
     private var data: NSMapTable<NSIndexPath, T>
     private var sortBlock: SortBlock<T>?
+    private weak var delegate: IReloadable?
     
     //MARK: - Animations
     var deleteAnimation: UITableViewRowAnimation = .right
@@ -36,43 +41,27 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
         let queue = OperationQueue()
         queue.underlyingQueue = DispatchQueue(label: "com.flatstack.ReloadOperations")
         queue.maxConcurrentOperationCount = 1
+        queue.qualityOfService = .userInteractive
         return queue
     }()
-    
-    private var lock: NSLock = NSLock()
-    
-    init(tableView: UITableView, referenced options: MemoryOption) {
+
+    init(tableView: UITableView, referenced options: MemoryOption, delegate: IReloadable) {
         self.tableView = tableView
+        self.delegate = delegate
         self.data = NSMapTable(keyOptions: MemoryOption.strongMemory, valueOptions: options)
         super.init()
-        //self.operationQueue.addObserver(self, forKeyPath: "operationCount", options: [.new], context: nil)
     }
-    
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if keyPath == "operationCount" {
-//            print("OPERATIONS COUNT - \(self.operationQueue.operationCount)")
-//        } else {
-//            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-//        }
-//    }
-    
-//    deinit {
-//        self.operationQueue.removeObserver(self, forKeyPath: "operationCount")
-//    }
     
     var dataCount: Int {
         return self.tableData.count
     }
     
-    subscript(indexPath: IndexPath) -> T? {
+    subscript(indexPath: NSIndexPath) -> T? {
         get {
-            let value: T? = self.tableData.object(forKey: indexPath as NSIndexPath?)
-            //Log("Get value - \(self.tableData.count)")
-            return value
+            return self.tableData.object(forKey: indexPath as NSIndexPath?)
         }
         set(newValue) {
             self.tableData.setObject(newValue, forKey: indexPath as NSIndexPath?)
-            //Log("Set value - \(self.tableData.count)")
         }
     }
     
@@ -82,48 +71,49 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
             self.lockQueue.sync {
                 currentData = self.data
             }
-            //Log("Get - \(currentData.count)")
             return currentData
         }
         set(newValue) {
             self.lockQueue.sync {
-                self.data = newValue
+                self.data.removeAllObjects()
+                let allIndexPaths: [NSIndexPath] = newValue.keyEnumerator().allObjects as! [NSIndexPath]
+                for indexPath in allIndexPaths {
+                    let value = newValue.object(forKey: indexPath)
+                    self.data.setObject(value, forKey: indexPath)
+                }
             }
-            //Log("Set - \(self.data.count)")
+            //Log("Set - \(self.dataCount)")
         }
     }
     
-    
-    
-    func set(sortBlock block: SortBlock<T>) {
-        
+    func set(sortBlock block: @escaping SortBlock<T>) {
+       // Log("Sort")
+        self.sortBlock = block
+        let operation = InsertOperation(newData : self.tableData,
+                                        array   : [],
+                                      sortBlock : self.sortBlock,
+                                 updateExisting : false,
+                                    resultBlock : self.tableOperationBlock)
+        self.operationQueue.addOperation(operation)
     }
     
     func set(data array: [T], update: Bool = true) {
-        
-            let name = UUID().uuidString
-            Log("Start new set operation - \(name)")
-            
-            let operation = UpdateOperation(newData : self.tableData,
-                                              array : array,
-                                          sortBlock : self.sortBlock,
-                                     updateExisting : update,
-                                        resultBlock : self.tableOperationBlock)
-            operation.name = name
-            self.operationQueue.addOperation(operation)
-        
+       // Log("Update")
+        let operation = UpdateOperation(data    : self.tableData,
+                                          array : array,
+                                      sortBlock : self.sortBlock,
+                                 updateExisting : update,
+                                    resultBlock : self.tableOperationBlock)
+        self.operationQueue.addOperation(operation)
     }
     
     func insert(array: [T], updateExisting: Bool = true) {
-        let name = UUID().uuidString
-        Log("Start new insert operation - \(name)")
-        
+        //Log("Insert")
         let operation = InsertOperation(newData : self.tableData,
                                           array : array,
                                       sortBlock : self.sortBlock,
                                  updateExisting : updateExisting,
                                     resultBlock : self.tableOperationBlock)
-        operation.name = name
         self.operationQueue.addOperation(operation)
     }
     
@@ -132,15 +122,10 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
     }
     
     func delete(array: [T]) {
-        
-        
-        let name = UUID().uuidString
-        Log("Start new delete operation - \(name)")
-        
+        //Log("Delete")
         let operation = DeleteOperation(newData : self.tableData,
                                           array : array,
                                     resultBlock : self.tableOperationBlock)
-        operation.name = name
         self.operationQueue.addOperation(operation)
         
     }
@@ -149,63 +134,54 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
         self.delete(array: [object])
     }
     
+    func reload() {
+        self.operationQueue.addOperation { [weak self] in
+            Thread.performOnMainThread {
+                self?.tableView?.reloadData()
+            }
+        }
+    }
+    
     func cancellAllReloadOperations() {
         self.operationQueue.cancelAllOperations()
     }
     
     private lazy var tableOperationBlock: ReloadCompletionBlock<T> = {
         
-        return { [weak self] (newData: NSMapTable<NSIndexPath, T>, deletingRows: [IndexPath], insertingRows: [IndexPath], movingRows: [IndexPath: IndexPath]) in
+        return { [weak self] (newData: NSMapTable<NSIndexPath, T>, deletingRows: [NSIndexPath], insertingRows: [NSIndexPath], movingRows: [NSIndexPath: NSIndexPath]) in
             
-            guard let sself = self, let lTableView = sself.tableView else { return }
+            guard let sself = self, let tableView = sself.tableView else { return }
             
-            let prevCount = sself.tableData.count
-            
-            Log("---------")
-            Log("Prev - \(sself.tableData.count)")
-            Log("New - \(newData.count)")
-            
-            var notModifiedIndexPaths: [IndexPath: IndexPath] = [:]
-            var modifiedIndexPaths: [IndexPath: IndexPath] = [:]
-            
-            for movingRow in movingRows {
-                guard let prevObject = sself.tableData.object(forKey: movingRow.key as NSIndexPath?) else { continue }
-                guard let newObject  = newData.object(forKey: movingRow.value as NSIndexPath?) else { continue }
-                if prevObject != newObject {
-                    modifiedIndexPaths[movingRow.key] = movingRow.value
-                } else {
-                    notModifiedIndexPaths[movingRow.key] = movingRow.value
-                }
-            }
-            
-            sself.tableData.removeAllObjects()
-            for key in newData.keyEnumerator().allObjects as! [IndexPath] {
-                let object = newData.object(forKey: key as NSIndexPath?)
-                sself.tableData.setObject(object, forKey: key as NSIndexPath?)
-            }
+            let previousDataCount: Int = sself.tableData.count
+            //Log("Previous before - \(previousDataCount)")
+            sself.tableData = newData
 
             Thread.performOnMainThread {
 
-                if prevCount + insertingRows.count - deletingRows.count != newData.count {
-                    Log("Crash")
+                guard previousDataCount + insertingRows.count - deletingRows.count == newData.count else {
+//                    Log("Previous - \(previousDataCount)")
+//                    Log("Inserting - \(insertingRows.count)")
+//                    Log("Deleting - \(deletingRows.count)")
+//                    Log("New Data - \(newData.count)")
+//                    Log("WARNING: Data inconsistency. Update skipped")
+                    tableView.reloadData()
+                    return
                 }
                 
-                lTableView.update {
+                tableView.update {
                     for (key, value) in movingRows {
-                        lTableView.moveRow(at: key, to: value)
+                        tableView.moveRow(at: key as IndexPath, to: value as IndexPath)
                     }
-                    lTableView.deleteRows(at: deletingRows, with: sself.deleteAnimation)
-                    lTableView.insertRows(at: insertingRows, with: sself.insertAnimation)
+                    tableView.deleteRows(at: deletingRows as [IndexPath], with: sself.deleteAnimation)
+                    tableView.insertRows(at: insertingRows as [IndexPath], with: sself.insertAnimation)
                 }
                 
-                lTableView.update {
-                    for row in lTableView.indexPathsForVisibleRows ?? [] {
-                        let cell = lTableView.cellForRow(at: row) as? BookCell
-                        cell?.contentView.fadeTransition(duration: 0.2)
-                        cell?.bookLabel.text = (sself.tableData.object(forKey: row as NSIndexPath?) as? Book)?.name
+                tableView.update {
+                    for row in tableView.indexPathsForVisibleRows ?? [] {
+                        guard let cell = tableView.cellForRow(at: row) else { continue }
+                        sself.delegate?.tableView(tableView, configureCell: cell, indexPath: row as NSIndexPath, data: sself[row as NSIndexPath])
                     }
                 }
-
             }
         }
     }()
@@ -214,7 +190,7 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
 
 extension UIView {
     
-    func fadeTransition(duration:CFTimeInterval) {
+    func fadeTransition(duration: CFTimeInterval) {
         let animation:CATransition = CATransition()
         animation.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
         animation.type = kCATransitionFade
