@@ -8,11 +8,6 @@
 
 import Foundation
 
-typealias ReloadCompletionBlock<T: AnyObject> = (_ newData : NSMapTable<NSIndexPath, T>,
-                                      _ deletingIndexPaths : [NSIndexPath],
-                                     _ insertingIndexPaths : [NSIndexPath],
-                                        _ movingIndexPaths : [NSIndexPath: NSIndexPath]) -> Void where T: Data
-
 final class UpdateOperation<T: AnyObject>: Operation where T: Data {
     
     private var data : NSMapTable<NSIndexPath, T>
@@ -36,15 +31,13 @@ final class UpdateOperation<T: AnyObject>: Operation where T: Data {
     
     override func main() {
         
-        //Log("Main update - \(self.name)")
-        
         if self.isCancelled { return }
         
         let newData: NSMapTable<NSIndexPath, T> = NSMapTable<NSIndexPath, T>()
         
         var insertingIndexPaths: [NSIndexPath] = []
-        var movingIndexPaths: [NSIndexPath: NSIndexPath] = [:]
-        var deletingIndexPaths: [NSIndexPath] = []
+        var movingIndexPaths   : [NSIndexPath: NSIndexPath] = [:]
+        var deletingIndexPaths : [NSIndexPath] = []
         
         var allIndexPaths: [NSIndexPath] = self.data.keyEnumerator().allObjects as! [NSIndexPath]
         
@@ -85,8 +78,11 @@ final class UpdateOperation<T: AnyObject>: Operation where T: Data {
             if self.updateExisting {
                 newData.setObject(newArray[i], forKey: newIndexPath)
             } else {
-                let prevObject: T = self.data.object(forKey: newIndexPath)!
-                newData.setObject(prevObject, forKey: newIndexPath)
+                if let prevObject = self.data.object(forKey: index) {
+                    newData.setObject(prevObject, forKey: newIndexPath)
+                } else {
+                    newData.setObject(newArray[i], forKey: newIndexPath)
+                }
             }
         }
         
@@ -99,21 +95,9 @@ final class UpdateOperation<T: AnyObject>: Operation where T: Data {
         
         deletingIndexPaths = allIndexPaths
         
-//        Log("Update")
-//        Log("Prev data in main \(self.name) - \(self.data.count)")
-//        Log("Prev insert in main \(self.name) - \(insertingIndexPaths.count)")
-//        Log("Prev delete in main \(self.name) - \(deletingIndexPaths.count)")
-//        Log("Prev newData in main \(self.name) - \(newData.count)")
-
-        
         if self.isCancelled { return }
         
-        if self.data.count + insertingIndexPaths.count - deletingIndexPaths.count != newData.count {
-            
-        }
-        
         self.resultBlock(newData, deletingIndexPaths, insertingIndexPaths, movingIndexPaths)
-        
-        //Log("Finish - \(self.name)")
+
     }
 }

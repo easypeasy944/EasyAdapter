@@ -15,17 +15,11 @@
 		A45E3BE01DCF8AF2008AA0DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A45E3BDE1DCF8AF2008AA0DA /* Main.storyboard */; };
 		A45E3BE21DCF8AF2008AA0DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A45E3BE11DCF8AF2008AA0DA /* Assets.xcassets */; };
 		A45E3BE51DCF8AF2008AA0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A45E3BE31DCF8AF2008AA0DA /* LaunchScreen.storyboard */; };
-		A45E3BF01DCF8AF2008AA0DA /* TableAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3BEF1DCF8AF2008AA0DA /* TableAdapterTests.swift */; };
-		A45E3C091DCF8E71008AA0DA /* TableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3C081DCF8E71008AA0DA /* TableAdapter.swift */; };
+		A45E3BF01DCF8AF2008AA0DA /* EasyAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3BEF1DCF8AF2008AA0DA /* EasyAdapterTests.swift */; };
+		A45E3C091DCF8E71008AA0DA /* EasyAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3C081DCF8E71008AA0DA /* EasyAdapter.swift */; };
 		A46300861DF49064003EF8DA /* InsertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300851DF49064003EF8DA /* InsertOperation.swift */; };
 		A46300881DF49491003EF8DA /* DeleteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300871DF49491003EF8DA /* DeleteOperation.swift */; };
 		A463008A1DF4AFF6003EF8DA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300891DF4AFF6003EF8DA /* TableViewController.swift */; };
-		A463008B1DF4B060003EF8DA /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D31DD8D72300D02F1B /* Book.swift */; };
-		A463008C1DF4B0C5003EF8DA /* TableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45E3C081DCF8E71008AA0DA /* TableAdapter.swift */; };
-		A463008D1DF4B0CB003EF8DA /* UpdateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D01DD8D6E200D02F1B /* UpdateOperation.swift */; };
-		A463008E1DF4B0CD003EF8DA /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42816D71DD8D90E00D02F1B /* Helpers.swift */; };
-		A463008F1DF4B0CF003EF8DA /* InsertOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300851DF49064003EF8DA /* InsertOperation.swift */; };
-		A46300901DF4B0D2003EF8DA /* DeleteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300871DF49491003EF8DA /* DeleteOperation.swift */; };
 		A46300921DF4BF44003EF8DA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300911DF4BF44003EF8DA /* TestHelpers.swift */; };
 		A4CA2DE01E4667A100007FA6 /* ObjcHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA2DDF1E4667A100007FA6 /* ObjcHelpers.m */; };
 		A4F878191DCFA8B400D9D6F4 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F878181DCFA8B400D9D6F4 /* BookCell.swift */; };
@@ -45,17 +39,17 @@
 		A42816D01DD8D6E200D02F1B /* UpdateOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateOperation.swift; sourceTree = "<group>"; };
 		A42816D31DD8D72300D02F1B /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		A42816D71DD8D90E00D02F1B /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		A45E3BD71DCF8AF2008AA0DA /* TableAdapter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableAdapter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A45E3BD71DCF8AF2008AA0DA /* EasyAdapter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyAdapter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A45E3BDA1DCF8AF2008AA0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A45E3BDC1DCF8AF2008AA0DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A45E3BDF1DCF8AF2008AA0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A45E3BE11DCF8AF2008AA0DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A45E3BE41DCF8AF2008AA0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A45E3BE61DCF8AF2008AA0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A45E3BEB1DCF8AF2008AA0DA /* TableAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A45E3BEF1DCF8AF2008AA0DA /* TableAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAdapterTests.swift; sourceTree = "<group>"; };
+		A45E3BEB1DCF8AF2008AA0DA /* EasyAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A45E3BEF1DCF8AF2008AA0DA /* EasyAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyAdapterTests.swift; sourceTree = "<group>"; };
 		A45E3BF11DCF8AF2008AA0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A45E3C081DCF8E71008AA0DA /* TableAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableAdapter.swift; sourceTree = "<group>"; };
+		A45E3C081DCF8E71008AA0DA /* EasyAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyAdapter.swift; sourceTree = "<group>"; };
 		A46300851DF49064003EF8DA /* InsertOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertOperation.swift; sourceTree = "<group>"; };
 		A46300871DF49491003EF8DA /* DeleteOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteOperation.swift; sourceTree = "<group>"; };
 		A46300891DF4AFF6003EF8DA /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +81,7 @@
 		A42816D21DD8D6E700D02F1B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A45E3C081DCF8E71008AA0DA /* TableAdapter.swift */,
+				A45E3C081DCF8E71008AA0DA /* EasyAdapter.swift */,
 				A42816D01DD8D6E200D02F1B /* UpdateOperation.swift */,
 				A42816D71DD8D90E00D02F1B /* Helpers.swift */,
 				A46300851DF49064003EF8DA /* InsertOperation.swift */,
@@ -99,8 +93,8 @@
 		A45E3BCE1DCF8AF2008AA0DA = {
 			isa = PBXGroup;
 			children = (
-				A45E3BD91DCF8AF2008AA0DA /* TableAdapter */,
-				A45E3BEE1DCF8AF2008AA0DA /* TableAdapterTests */,
+				A45E3BD91DCF8AF2008AA0DA /* EasyAdapter */,
+				A45E3BEE1DCF8AF2008AA0DA /* EasyAdapterTests */,
 				A45E3BD81DCF8AF2008AA0DA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,13 +102,13 @@
 		A45E3BD81DCF8AF2008AA0DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A45E3BD71DCF8AF2008AA0DA /* TableAdapter.app */,
-				A45E3BEB1DCF8AF2008AA0DA /* TableAdapterTests.xctest */,
+				A45E3BD71DCF8AF2008AA0DA /* EasyAdapter.app */,
+				A45E3BEB1DCF8AF2008AA0DA /* EasyAdapterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A45E3BD91DCF8AF2008AA0DA /* TableAdapter */ = {
+		A45E3BD91DCF8AF2008AA0DA /* EasyAdapter */ = {
 			isa = PBXGroup;
 			children = (
 				A42816D21DD8D6E700D02F1B /* Core */,
@@ -130,26 +124,28 @@
 				A4CA2DDF1E4667A100007FA6 /* ObjcHelpers.m */,
 				A4CA2DDD1E4667A100007FA6 /* TableAdapter-Bridging-Header.h */,
 			);
+			name = EasyAdapter;
 			path = TableAdapter;
 			sourceTree = "<group>";
 		};
-		A45E3BEE1DCF8AF2008AA0DA /* TableAdapterTests */ = {
+		A45E3BEE1DCF8AF2008AA0DA /* EasyAdapterTests */ = {
 			isa = PBXGroup;
 			children = (
-				A45E3BEF1DCF8AF2008AA0DA /* TableAdapterTests.swift */,
+				A45E3BEF1DCF8AF2008AA0DA /* EasyAdapterTests.swift */,
 				A45E3BF11DCF8AF2008AA0DA /* Info.plist */,
 				A46300891DF4AFF6003EF8DA /* TableViewController.swift */,
 				A46300911DF4BF44003EF8DA /* TestHelpers.swift */,
 			);
+			name = EasyAdapterTests;
 			path = TableAdapterTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A45E3BD61DCF8AF2008AA0DA /* TableAdapter */ = {
+		A45E3BD61DCF8AF2008AA0DA /* EasyAdapter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A45E3BFF1DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "TableAdapter" */;
+			buildConfigurationList = A45E3BFF1DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "EasyAdapter" */;
 			buildPhases = (
 				A45E3BD31DCF8AF2008AA0DA /* Sources */,
 				A45E3BD41DCF8AF2008AA0DA /* Frameworks */,
@@ -159,14 +155,14 @@
 			);
 			dependencies = (
 			);
-			name = TableAdapter;
+			name = EasyAdapter;
 			productName = TableAdapter;
-			productReference = A45E3BD71DCF8AF2008AA0DA /* TableAdapter.app */;
+			productReference = A45E3BD71DCF8AF2008AA0DA /* EasyAdapter.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A45E3BEA1DCF8AF2008AA0DA /* TableAdapterTests */ = {
+		A45E3BEA1DCF8AF2008AA0DA /* EasyAdapterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A45E3C021DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "TableAdapterTests" */;
+			buildConfigurationList = A45E3C021DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "EasyAdapterTests" */;
 			buildPhases = (
 				A45E3BE71DCF8AF2008AA0DA /* Sources */,
 				A45E3BE81DCF8AF2008AA0DA /* Frameworks */,
@@ -177,9 +173,9 @@
 			dependencies = (
 				A45E3BED1DCF8AF2008AA0DA /* PBXTargetDependency */,
 			);
-			name = TableAdapterTests;
+			name = EasyAdapterTests;
 			productName = TableAdapterTests;
-			productReference = A45E3BEB1DCF8AF2008AA0DA /* TableAdapterTests.xctest */;
+			productReference = A45E3BEB1DCF8AF2008AA0DA /* EasyAdapterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -189,7 +185,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Aynur Galiev";
 				TargetAttributes = {
 					A45E3BD61DCF8AF2008AA0DA = {
@@ -206,7 +202,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A45E3BD21DCF8AF2008AA0DA /* Build configuration list for PBXProject "TableAdapter" */;
+			buildConfigurationList = A45E3BD21DCF8AF2008AA0DA /* Build configuration list for PBXProject "EasyAdapter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -219,8 +215,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A45E3BD61DCF8AF2008AA0DA /* TableAdapter */,
-				A45E3BEA1DCF8AF2008AA0DA /* TableAdapterTests */,
+				A45E3BD61DCF8AF2008AA0DA /* EasyAdapter */,
+				A45E3BEA1DCF8AF2008AA0DA /* EasyAdapterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,7 +254,7 @@
 				A42816D81DD8D90E00D02F1B /* Helpers.swift in Sources */,
 				A42816D11DD8D6E200D02F1B /* UpdateOperation.swift in Sources */,
 				A45E3BDB1DCF8AF2008AA0DA /* AppDelegate.swift in Sources */,
-				A45E3C091DCF8E71008AA0DA /* TableAdapter.swift in Sources */,
+				A45E3C091DCF8E71008AA0DA /* EasyAdapter.swift in Sources */,
 				A46300861DF49064003EF8DA /* InsertOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,14 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A45E3BF01DCF8AF2008AA0DA /* TableAdapterTests.swift in Sources */,
-				A463008E1DF4B0CD003EF8DA /* Helpers.swift in Sources */,
+				A45E3BF01DCF8AF2008AA0DA /* EasyAdapterTests.swift in Sources */,
 				A463008A1DF4AFF6003EF8DA /* TableViewController.swift in Sources */,
-				A463008D1DF4B0CB003EF8DA /* UpdateOperation.swift in Sources */,
-				A46300901DF4B0D2003EF8DA /* DeleteOperation.swift in Sources */,
-				A463008C1DF4B0C5003EF8DA /* TableAdapter.swift in Sources */,
-				A463008F1DF4B0CF003EF8DA /* InsertOperation.swift in Sources */,
-				A463008B1DF4B060003EF8DA /* Book.swift in Sources */,
 				A46300921DF4BF44003EF8DA /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +274,7 @@
 /* Begin PBXTargetDependency section */
 		A45E3BED1DCF8AF2008AA0DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A45E3BD61DCF8AF2008AA0DA /* TableAdapter */;
+			target = A45E3BD61DCF8AF2008AA0DA /* EasyAdapter */;
 			targetProxy = A45E3BEC1DCF8AF2008AA0DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -327,6 +317,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -377,6 +368,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -414,7 +406,7 @@
 				INFOPLIST_FILE = TableAdapter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.TableAdapter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.EasyAdapter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TableAdapter/TableAdapter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -434,10 +426,10 @@
 				INFOPLIST_FILE = TableAdapter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.TableAdapter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.EasyAdapter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TableAdapter/TableAdapter-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -453,7 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.TableAdapterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TableAdapter.app/TableAdapter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyAdapter.app/EasyAdapter";
 			};
 			name = Debug;
 		};
@@ -468,14 +460,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.flatstack.TableAdapterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TableAdapter.app/TableAdapter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyAdapter.app/EasyAdapter";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A45E3BD21DCF8AF2008AA0DA /* Build configuration list for PBXProject "TableAdapter" */ = {
+		A45E3BD21DCF8AF2008AA0DA /* Build configuration list for PBXProject "EasyAdapter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A45E3BFD1DCF8AF2008AA0DA /* Debug */,
@@ -484,7 +476,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A45E3BFF1DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "TableAdapter" */ = {
+		A45E3BFF1DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "EasyAdapter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A45E3C001DCF8AF2008AA0DA /* Debug */,
@@ -493,7 +485,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A45E3C021DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "TableAdapterTests" */ = {
+		A45E3C021DCF8AF2008AA0DA /* Build configuration list for PBXNativeTarget "EasyAdapterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A45E3C031DCF8AF2008AA0DA /* Debug */,

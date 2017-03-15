@@ -8,8 +8,6 @@
 
 import Foundation
 
-protocol Data: Comparable, Hashable {}
-
 class Book: Data, CustomDebugStringConvertible {
     
     var id: String

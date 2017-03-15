@@ -7,8 +7,9 @@
 //
 
 import UIKit
+@testable import EasyAdapter
 
-class TableViewController: UIViewController, UITableViewDataSource {
+class TableViewController: UIViewController, UITableViewDataSource, IReloadable {
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -17,8 +18,8 @@ class TableViewController: UIViewController, UITableViewDataSource {
         return tableView
     }()
     
-    lazy var tableAdapter: TableAdapter<Book> = {
-        let adapter = TableAdapter<Book>(tableView: self.tableView, referenced: MemoryOption.weakMemory)
+    lazy var tableAdapter: EasyAdapter<Book> = {
+        let adapter = EasyAdapter<Book>(tableView: self.tableView, referenced: MemoryOption.weakMemory, delegate: self)
         return adapter
     }()
     
@@ -37,7 +38,11 @@ class TableViewController: UIViewController, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = self.tableAdapter[indexPath]?.name
+        cell?.textLabel?.text = self.tableAdapter[indexPath as NSIndexPath]?.name
         return cell!
+    }
+    
+    func tableView<T>(_ tableView: UITableView, configureCell cell: UITableViewCell, indexPath: NSIndexPath, data: T) {
+        
     }
 }

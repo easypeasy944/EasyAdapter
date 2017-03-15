@@ -16,11 +16,11 @@ final class InsertOperation<T: AnyObject>: Operation where T: Data  {
     private var sortBlock: SortBlock<T>?
     private var updateExisting: Bool
     
-    init(newData    : NSMapTable<NSIndexPath, T>,
-         array      : [T],
-         sortBlock  : SortBlock<T>?,
-         updateExisting: Bool,
-         resultBlock: @escaping ReloadCompletionBlock<T>) {
+    init(newData        : NSMapTable<NSIndexPath, T>,
+         array          : [T],
+         sortBlock      : SortBlock<T>?,
+         updateExisting : Bool,
+         resultBlock    : @escaping ReloadCompletionBlock<T>) {
         
         self.updateExisting = updateExisting
         self.sortBlock   = sortBlock
@@ -31,8 +31,6 @@ final class InsertOperation<T: AnyObject>: Operation where T: Data  {
     
     override func main() {
         
-        //Log("Main insert - \(self.name)")
-        
         if self.isCancelled { return }
         
         let newData: NSMapTable<NSIndexPath, T> = NSMapTable<NSIndexPath, T>()
@@ -41,62 +39,55 @@ final class InsertOperation<T: AnyObject>: Operation where T: Data  {
         var movingIndexPaths: [NSIndexPath: NSIndexPath] = [:]
         
         var allIndexPaths: [NSIndexPath] = self.data.keyEnumerator().allObjects as! [NSIndexPath]
-        let allValues: [T] = self.data.objectEnumerator()!.allObjects as! [T]
+        allIndexPaths.sort { $0.row < $1.row }
         
-        allIndexPaths.sort { (first, second) -> Bool in
-            return first.row < second.row
-        }
-        
-        var prevValues: [T] = []
-        
+        var allValues: [T] = []
         for indexPath in allIndexPaths {
-            guard let object = self.data.object(forKey: indexPath as NSIndexPath?) else { continue }
-            prevValues.append(object)
+            let value = self.data.object(forKey: indexPath)
+            allValues.append(value!)
         }
         
-        let arrayHashes: [Int] = self.array.map { $0.hashValue }
-        prevValues = prevValues.filter { !arrayHashes.contains($0.hashValue) }
-        prevValues.append(contentsOf: self.array)
+        if self.isCancelled { return }
+        
+        var resultArray: [T] = allValues
+        let newDataArray = self.array.distinct(includeElement: { $0.hashValue == $1.hashValue })
+        
+        for value in newDataArray {
+            let index = resultArray.index(where: { $0.hashValue == value.hashValue })
+            if let lIndex = index {
+                if self.updateExisting {
+                    resultArray.remove(at: lIndex)
+                    resultArray.append(value)
+                }
+            } else {
+                resultArray.append(value)
+            }
+        }
         
         if let lSortBlock = self.sortBlock {
-            prevValues.sort(by: lSortBlock)
+            resultArray.sort(by: lSortBlock)
         }
         
-        for i in 0..<prevValues.count {
+        if self.isCancelled { return }
+        
+        for i in 0..<resultArray.count {
             
             let newIndexPath: NSIndexPath = NSIndexPath(row: i, section: 0)
-            newData.setObject(prevValues[i], forKey: newIndexPath as NSIndexPath?)
+            newData.setObject(resultArray[i], forKey: newIndexPath)
             
-            if let _ = allValues.index(of: prevValues[i]) {
+            let index = allValues.index(where: { $0.hashValue == resultArray[i].hashValue })
             
-                var indexPath: NSIndexPath? = nil
-                
-                for key in self.data.keyEnumerator().allObjects as! [NSIndexPath] {
-                    guard let object = self.data.object(forKey: key as NSIndexPath?) else { continue }
-                    if object == prevValues[i] {
-                        indexPath = key
-                        break
-                    }
-                }
-                
-                movingIndexPaths[indexPath!] = newIndexPath
+            if let lIndex = index {
+                let prevIndexPath: NSIndexPath = NSIndexPath(row: lIndex, section: 0)
+                movingIndexPaths[prevIndexPath] = newIndexPath
             } else {
                 insertingIndexPaths.append(newIndexPath)
             }
         }
-        
-//        Log("Insert")
-//        Log("Prev data in main \(self.name) - \(self.data.count)")
-//        Log("Prev insert in main \(self.name) - \(insertingIndexPaths.count)")
-//        Log("Prev newData in main \(self.name) - \(newData.count)")
-        
-        if self.data.count + insertingIndexPaths.count != newData.count {
-            
-        }
+
+        if self.isCancelled { return }
         
         self.resultBlock(newData, [], insertingIndexPaths, movingIndexPaths)
-        
-        //Log("Finish - \(self.name)")
     }
 
 }

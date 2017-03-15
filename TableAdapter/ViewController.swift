@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    fileprivate lazy var tableAdapter: TableAdapter<Book> = {
-        return TableAdapter<Book>(tableView: self.tableView, referenced: MemoryOption.weakMemory, delegate: self)
+    fileprivate lazy var tableAdapter: EasyAdapter<Book> = {
+        return EasyAdapter<Book>(tableView: self.tableView, referenced: MemoryOption.weakMemory, delegate: self)
     }()
     var books: [Book] = []
     var minimumLength: UInt32 = 10
@@ -22,8 +22,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.generateBooks()
-        self.tableView.estimatedRowHeight = 44
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+//        self.tableView.estimatedRowHeight = 44
+//        self.tableView.rowHeight = UITableViewAutomaticDimension
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
     }
     
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         //NSLog("Reload")
         var books: [Book] = []
         for i in 0..<self.books.count {
-            if arc4random()%2 == 0 { // Don't use condition for waves effect
+            if arc4random()%2 == 0 {
                 books.append(self.books[i])
             }
         }
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         case 0:
             var books: [Book] = []
             for i in 0..<self.books.count {
-                if arc4random()%2 == 0 { // Don't use condition for waves effect
+                if arc4random()%2 == 0 {
                     books.append(self.books[i])
                 }
             }
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         case 1:
             var books: [Book] = []
             for i in 0..<self.books.count {
-                if arc4random()%2 == 0 { // Don't use condition for waves effect
+                if arc4random()%2 == 0 {
                     books.append(self.books[i])
                 }
             }
@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         case 2:
             var books: [Book] = []
             for i in 0..<self.books.count {
-                if arc4random()%2 == 0 { // Don't use condition for waves effect
+                if arc4random()%2 == 0 {
                     books.append(self.books[i])
                 }
             }
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
     }
     
     func generateBooks() {
-        let count = 20
+        let count = 100
         for _ in 0..<count {
             
             let name = randomString(length: Int(arc4random_uniform(150)+self.minimumLength))
@@ -130,13 +130,14 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Log("Count - \(self.tableAdapter.tableData.count)")
         return self.tableAdapter.tableData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! BookCell
-        //Log("Cell - \(indexPath)")
+        let cell: BookCell! = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! BookCell
+        if cell == nil {
+            print("Cell is nil")
+        }
         return cell
     }
 }
@@ -155,39 +156,33 @@ extension ViewController: IReloadable {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        //Log("\(indexPath)")
-        
         if let lCell = cell as? BookCell {
             let book = self.tableAdapter[indexPath as NSIndexPath]
             lCell.bookLabel.text = book?.name
         }
     }
     
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//    
-//        let book = self.tableAdapter[indexPath as NSIndexPath]
-//        
-//        let rect = NSString(string: book?.name ?? "").boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude),
-//                                                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
-//                                                                    attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)],
-//                                                                    context: nil)
-//        
-//        return ceil(rect.size.height) + 16
-//    }
-//
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        
-//        let book = self.tableAdapter[indexPath as NSIndexPath]
-//        
-//        let rect = NSString(string: book?.name ?? "").boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude),
-//                                                                   options: NSStringDrawingOptions.usesLineFragmentOrigin,
-//                                                                   attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)],
-//                                                                   context: nil)
-//        
-//        //Log("Height - \(indexPath) - \(ceil(rect.size.height) + 16)")
-//        
-//        return ceil(rect.size.height) + 16
-//    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    
+        let book = self.tableAdapter[indexPath as NSIndexPath]
+        
+        let rect = NSString(string: book?.name ?? "").boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude),
+                                                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                                    attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)],
+                                                                    context: nil)
+        
+        return ceil(rect.size.height) + 16
+    }
+
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let book = self.tableAdapter[indexPath as NSIndexPath]
+        
+        let rect = NSString(string: book?.name ?? "").boundingRect(with: CGSize(width: tableView.frame.size.width - 16, height: CGFloat.greatestFiniteMagnitude),
+                                                                   options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                                   attributes: [NSFontAttributeName : UIFont.systemFont(ofSize: 17)],
+                                                                   context: nil)
+        return ceil(rect.size.height) + 16
+    }
 }

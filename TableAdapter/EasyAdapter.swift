@@ -12,29 +12,31 @@ import UIKit
 typealias MemoryOption = NSPointerFunctions.Options
 typealias SortBlock<T> = ((_ lhs: T, _ rhs: T) -> Bool)
 
-var printQueue: DispatchQueue = DispatchQueue(label: "com.flatstack.Print")
-
-func Log(_ message: String) {
-    NSLog(message)
-}
+typealias ReloadCompletionBlock<T: AnyObject> = (_ newData : NSMapTable<NSIndexPath, T>,
+                                      _ deletingIndexPaths : [NSIndexPath],
+                                     _ insertingIndexPaths : [NSIndexPath],
+                                        _ movingIndexPaths : [NSIndexPath: NSIndexPath]) -> Void where T: Data
 
 protocol IReloadable: class {
     func tableView<T>(_ tableView: UITableView, configureCell cell: UITableViewCell, indexPath: NSIndexPath, data: T)
 }
 
-final class TableAdapter<T: AnyObject>: NSObject where T: Data {
+protocol Data: Comparable, Hashable {}
 
-    private weak var tableView: UITableView?
-    private var data: NSMapTable<NSIndexPath, T>
-    private var sortBlock: SortBlock<T>?
-    private weak var delegate: IReloadable?
+final class EasyAdapter<T: AnyObject>: NSObject where T: Data {
+
+    //MARK: - Private variables
+    private weak var tableView : UITableView?
+    private var data           : NSMapTable<NSIndexPath, T>
+    private var sortBlock      : SortBlock<T>?
+    private weak var delegate  : IReloadable?
     
-    //MARK: - Animations
+    //MARK: - Animation settings
     var deleteAnimation: UITableViewRowAnimation = .right
     var insertAnimation: UITableViewRowAnimation = .left
     var reloadAnimation: UITableViewRowAnimation = .automatic
     
-    //MARK: - Queues
+    //MARK: - Sync queues
     private var lockQueue: DispatchQueue = DispatchQueue(label: "com.flatstack.LockData")
     
     private lazy var operationQueue: OperationQueue = {
@@ -82,12 +84,10 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
                     self.data.setObject(value, forKey: indexPath)
                 }
             }
-            //Log("Set - \(self.dataCount)")
         }
     }
     
     func set(sortBlock block: @escaping SortBlock<T>) {
-       // Log("Sort")
         self.sortBlock = block
         let operation = InsertOperation(newData : self.tableData,
                                         array   : [],
@@ -98,7 +98,7 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
     }
     
     func set(data array: [T], update: Bool = true) {
-       // Log("Update")
+
         let operation = UpdateOperation(data    : self.tableData,
                                           array : array,
                                       sortBlock : self.sortBlock,
@@ -108,7 +108,7 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
     }
     
     func insert(array: [T], updateExisting: Bool = true) {
-        //Log("Insert")
+
         let operation = InsertOperation(newData : self.tableData,
                                           array : array,
                                       sortBlock : self.sortBlock,
@@ -122,7 +122,7 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
     }
     
     func delete(array: [T]) {
-        //Log("Delete")
+
         let operation = DeleteOperation(newData : self.tableData,
                                           array : array,
                                     resultBlock : self.tableOperationBlock)
@@ -153,17 +153,14 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
             guard let sself = self, let tableView = sself.tableView else { return }
             
             let previousDataCount: Int = sself.tableData.count
-            //Log("Previous before - \(previousDataCount)")
             sself.tableData = newData
 
+            print(insertingRows.map { $0.row })
+            
             Thread.performOnMainThread {
 
                 guard previousDataCount + insertingRows.count - deletingRows.count == newData.count else {
-//                    Log("Previous - \(previousDataCount)")
-//                    Log("Inserting - \(insertingRows.count)")
-//                    Log("Deleting - \(deletingRows.count)")
-//                    Log("New Data - \(newData.count)")
-//                    Log("WARNING: Data inconsistency. Update skipped")
+                    print("WARNING: Data inconsistency. Update skipped")
                     tableView.reloadData()
                     return
                 }
@@ -191,8 +188,8 @@ final class TableAdapter<T: AnyObject>: NSObject where T: Data {
 extension UIView {
     
     func fadeTransition(duration: CFTimeInterval) {
-        let animation:CATransition = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+        let animation: CATransition = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         animation.type = kCATransitionFade
         animation.duration = duration
         self.layer.add(animation, forKey: kCATransitionFade)

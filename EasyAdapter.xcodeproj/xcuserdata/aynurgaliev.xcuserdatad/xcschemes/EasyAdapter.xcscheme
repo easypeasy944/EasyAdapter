@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A45E3BD61DCF8AF2008AA0DA"
-               BuildableName = "TableAdapter.app"
-               BlueprintName = "TableAdapter"
-               ReferencedContainer = "container:TableAdapter.xcodeproj">
+               BuildableName = "EasyAdapter.app"
+               BlueprintName = "EasyAdapter"
+               ReferencedContainer = "container:EasyAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,7 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldUseLaunchSchemeArgsEnv = "NO"
       codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
@@ -34,31 +34,27 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A45E3BEA1DCF8AF2008AA0DA"
-               BuildableName = "TableAdapterTests.xctest"
-               BlueprintName = "TableAdapterTests"
-               ReferencedContainer = "container:TableAdapter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A45E3BF51DCF8AF2008AA0DA"
-               BuildableName = "TableAdapterUITests.xctest"
-               BlueprintName = "TableAdapterUITests"
-               ReferencedContainer = "container:TableAdapter.xcodeproj">
+               BuildableName = "EasyAdapterTests.xctest"
+               BlueprintName = "EasyAdapterTests"
+               ReferencedContainer = "container:EasyAdapter.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A45E3BD61DCF8AF2008AA0DA"
-            BuildableName = "TableAdapter.app"
-            BlueprintName = "TableAdapter"
-            ReferencedContainer = "container:TableAdapter.xcodeproj">
+            BlueprintIdentifier = "A45E3BEA1DCF8AF2008AA0DA"
+            BuildableName = "EasyAdapterTests.xctest"
+            BlueprintName = "EasyAdapterTests"
+            ReferencedContainer = "container:EasyAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-isTest YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -77,23 +73,16 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A45E3BD61DCF8AF2008AA0DA"
-            BuildableName = "TableAdapter.app"
-            BlueprintName = "TableAdapter"
-            ReferencedContainer = "container:TableAdapter.xcodeproj">
+            BuildableName = "EasyAdapter.app"
+            BlueprintName = "EasyAdapter"
+            ReferencedContainer = "container:EasyAdapter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -103,9 +92,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A45E3BD61DCF8AF2008AA0DA"
-            BuildableName = "TableAdapter.app"
-            BlueprintName = "TableAdapter"
-            ReferencedContainer = "container:TableAdapter.xcodeproj">
+            BuildableName = "EasyAdapter.app"
+            BlueprintName = "EasyAdapter"
+            ReferencedContainer = "container:EasyAdapter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

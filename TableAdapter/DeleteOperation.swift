@@ -25,8 +25,6 @@ final class DeleteOperation<T: AnyObject>: Operation where T: Data {
     
     override func main() {
         
-        //Log("Main delete")
-        
         if self.isCancelled { return }
         
         let newData: NSMapTable<NSIndexPath, T> = NSMapTable<NSIndexPath, T>()
@@ -35,27 +33,21 @@ final class DeleteOperation<T: AnyObject>: Operation where T: Data {
         
         var indexPath: NSIndexPath = NSIndexPath(row: 0, section: 0)
         
-        for key in self.data.keyEnumerator().allObjects as! [NSIndexPath] {
-            guard let value = self.data.object(forKey: key as NSIndexPath?) else { continue }
+        var allIndexPaths: [NSIndexPath] = self.data.keyEnumerator().allObjects as! [NSIndexPath]
+        allIndexPaths.sort { $0.row < $1.row }
+        
+        for key in allIndexPaths {
+            guard let value = self.data.object(forKey: key) else { continue }
             if self.array.contains(value) {
                 deletingIndexPaths.append(key)
             } else {
-                newData.setObject(value, forKey: indexPath as NSIndexPath?)
+                newData.setObject(value, forKey: indexPath)
                 indexPath = NSIndexPath(row: indexPath.row + 1, section: indexPath.section)
             }
         }
         
-        if self.data.count - deletingIndexPaths.count != newData.count {
-            
-        }
-        
-//        Log("Delete") 
-//        Log("Prev data in main \(self.name) - \(self.data.count)")
-//        Log("Prev delete in main \(self.name) - \(deletingIndexPaths.count)")
-//        Log("Prev newData in main \(self.name) - \(newData.count)")
+        if self.isCancelled { return }
         
         self.resultBlock(newData, deletingIndexPaths, [], [:])
-        
-        //Log("Finish - \(self.name)")
     }
 }

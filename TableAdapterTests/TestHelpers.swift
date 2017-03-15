@@ -7,8 +7,12 @@
 //
 
 import Foundation
+@testable import EasyAdapter
 
-extension NSMapTable {
-    
-    
+func isArraysEqual(first: [Book], second: [Book]) -> Bool {
+    guard first.count == second.count else { return false }
+    for i in 0..<first.count {
+        guard first[i] == second[i] else { return false }
+    }
+    return true
 }
