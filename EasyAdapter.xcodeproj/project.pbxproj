@@ -22,6 +22,16 @@
 		A463008A1DF4AFF6003EF8DA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300891DF4AFF6003EF8DA /* TableViewController.swift */; };
 		A46300921DF4BF44003EF8DA /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46300911DF4BF44003EF8DA /* TestHelpers.swift */; };
 		A4CA2DE01E4667A100007FA6 /* ObjcHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CA2DDF1E4667A100007FA6 /* ObjcHelpers.m */; };
+		A4E0FEB61E9F814100CB907F /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEB51E9F814100CB907F /* Section.swift */; };
+		A4E0FEB81E9F81F300CB907F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEB71E9F81F300CB907F /* Data.swift */; };
+		A4E0FEBC1E9F869E00CB907F /* WeakWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEBB1E9F869E00CB907F /* WeakWrapper.swift */; };
+		A4E0FEBE1E9F876500CB907F /* StrongWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEBD1E9F876500CB907F /* StrongWrapper.swift */; };
+		A4E0FEC01E9F877700CB907F /* IWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEBF1E9F877700CB907F /* IWrapper.swift */; };
+		A4E0FEC21E9F8DCE00CB907F /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEC11E9F8DCE00CB907F /* Adapter.swift */; };
+		A4E0FEC41E9F8F1500CB907F /* IReloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEC31E9F8F1500CB907F /* IReloadable.swift */; };
+		A4E0FEC71E9F8F3E00CB907F /* RetainType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEC61E9F8F3E00CB907F /* RetainType.swift */; };
+		A4E0FEC91E9F8F8000CB907F /* DiffCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FEC81E9F8F8000CB907F /* DiffCalculator.swift */; };
+		A4E0FECB1E9F8FA500CB907F /* DiffResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E0FECA1E9F8FA500CB907F /* DiffResult.swift */; };
 		A4F878191DCFA8B400D9D6F4 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F878181DCFA8B400D9D6F4 /* BookCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +67,16 @@
 		A4CA2DDD1E4667A100007FA6 /* TableAdapter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TableAdapter-Bridging-Header.h"; sourceTree = "<group>"; };
 		A4CA2DDE1E4667A100007FA6 /* ObjcHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcHelpers.h; sourceTree = "<group>"; };
 		A4CA2DDF1E4667A100007FA6 /* ObjcHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcHelpers.m; sourceTree = "<group>"; };
+		A4E0FEB51E9F814100CB907F /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		A4E0FEB71E9F81F300CB907F /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		A4E0FEBB1E9F869E00CB907F /* WeakWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakWrapper.swift; sourceTree = "<group>"; };
+		A4E0FEBD1E9F876500CB907F /* StrongWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrongWrapper.swift; sourceTree = "<group>"; };
+		A4E0FEBF1E9F877700CB907F /* IWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IWrapper.swift; sourceTree = "<group>"; };
+		A4E0FEC11E9F8DCE00CB907F /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
+		A4E0FEC31E9F8F1500CB907F /* IReloadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IReloadable.swift; sourceTree = "<group>"; };
+		A4E0FEC61E9F8F3E00CB907F /* RetainType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetainType.swift; sourceTree = "<group>"; };
+		A4E0FEC81E9F8F8000CB907F /* DiffCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffCalculator.swift; sourceTree = "<group>"; };
+		A4E0FECA1E9F8FA500CB907F /* DiffResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffResult.swift; sourceTree = "<group>"; };
 		A4F878181DCFA8B400D9D6F4 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,11 +101,17 @@
 		A42816D21DD8D6E700D02F1B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A4E0FEC51E9F8F2F00CB907F /* Enums */,
+				A4E0FEBA1E9F869100CB907F /* Helpers */,
+				A4E0FEB91E9F822300CB907F /* Protocols */,
 				A45E3C081DCF8E71008AA0DA /* EasyAdapter.swift */,
 				A42816D01DD8D6E200D02F1B /* UpdateOperation.swift */,
 				A42816D71DD8D90E00D02F1B /* Helpers.swift */,
 				A46300851DF49064003EF8DA /* InsertOperation.swift */,
 				A46300871DF49491003EF8DA /* DeleteOperation.swift */,
+				A4E0FEC11E9F8DCE00CB907F /* Adapter.swift */,
+				A4E0FEC81E9F8F8000CB907F /* DiffCalculator.swift */,
+				A4E0FECA1E9F8FA500CB907F /* DiffResult.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -138,6 +164,34 @@
 			);
 			name = EasyAdapterTests;
 			path = TableAdapterTests;
+			sourceTree = "<group>";
+		};
+		A4E0FEB91E9F822300CB907F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A4E0FEBF1E9F877700CB907F /* IWrapper.swift */,
+				A4E0FEB51E9F814100CB907F /* Section.swift */,
+				A4E0FEB71E9F81F300CB907F /* Data.swift */,
+				A4E0FEC31E9F8F1500CB907F /* IReloadable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		A4E0FEBA1E9F869100CB907F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A4E0FEBB1E9F869E00CB907F /* WeakWrapper.swift */,
+				A4E0FEBD1E9F876500CB907F /* StrongWrapper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		A4E0FEC51E9F8F2F00CB907F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				A4E0FEC61E9F8F3E00CB907F /* RetainType.swift */,
+			);
+			name = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,13 +302,23 @@
 			files = (
 				A46300881DF49491003EF8DA /* DeleteOperation.swift in Sources */,
 				A4CA2DE01E4667A100007FA6 /* ObjcHelpers.m in Sources */,
+				A4E0FEC41E9F8F1500CB907F /* IReloadable.swift in Sources */,
 				A4F878191DCFA8B400D9D6F4 /* BookCell.swift in Sources */,
 				A45E3BDD1DCF8AF2008AA0DA /* ViewController.swift in Sources */,
+				A4E0FEB61E9F814100CB907F /* Section.swift in Sources */,
 				A42816D41DD8D72300D02F1B /* Book.swift in Sources */,
+				A4E0FEC01E9F877700CB907F /* IWrapper.swift in Sources */,
+				A4E0FEBC1E9F869E00CB907F /* WeakWrapper.swift in Sources */,
 				A42816D81DD8D90E00D02F1B /* Helpers.swift in Sources */,
+				A4E0FEC21E9F8DCE00CB907F /* Adapter.swift in Sources */,
+				A4E0FEB81E9F81F300CB907F /* Data.swift in Sources */,
 				A42816D11DD8D6E200D02F1B /* UpdateOperation.swift in Sources */,
+				A4E0FEC91E9F8F8000CB907F /* DiffCalculator.swift in Sources */,
+				A4E0FEBE1E9F876500CB907F /* StrongWrapper.swift in Sources */,
+				A4E0FECB1E9F8FA500CB907F /* DiffResult.swift in Sources */,
 				A45E3BDB1DCF8AF2008AA0DA /* AppDelegate.swift in Sources */,
 				A45E3C091DCF8E71008AA0DA /* EasyAdapter.swift in Sources */,
+				A4E0FEC71E9F8F3E00CB907F /* RetainType.swift in Sources */,
 				A46300861DF49064003EF8DA /* InsertOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

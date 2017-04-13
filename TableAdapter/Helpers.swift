@@ -22,16 +22,31 @@ extension Thread {
 
 extension Dictionary where Value: Data {
     
-    mutating func fs_removeValue(object: Dictionary.Value) -> [Dictionary.Key] {
-        var affectedKeys: [Key] = []
-        for (key, value) in self {
-            if value == object { affectedKeys.append(key) }
-            else { continue }
-        }
-        affectedKeys.forEach { (key) in
-            self.removeValue(forKey: key)
-        }
-        return affectedKeys
+//    mutating func fs_removeValue(object: Dictionary.Value) -> [Dictionary.Key] {
+//        var affectedKeys: [Key] = []
+//        for (key, value) in self {
+//            if value == object { affectedKeys.append(key) }
+//            else { continue }
+//        }
+//        affectedKeys.forEach { (key) in
+//            self.removeValue(forKey: key)
+//        }
+//        return affectedKeys
+//    }
+    
+    func allKeys(forValue value: Value) -> [Key] {
+        return self.filter { $1 == value }.map { $0.0 }
+    }
+}
+
+extension Dictionary {
+    
+    var fs_keys: [Key] {
+        return Array(self.keys)
+    }
+    
+    var fs_values: [Value] {
+        return Array(self.values)
     }
 }
 

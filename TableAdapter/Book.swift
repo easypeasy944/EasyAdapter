@@ -10,6 +10,10 @@ import Foundation
 
 class Book: Data, CustomDebugStringConvertible {
     
+    var uniqueID: String {
+        return self.id
+    }
+    
     var id: String
     var name: String
     
